@@ -355,13 +355,23 @@ $$
 
 **Hexacopter**
 
+![image-20240123125813855](hexacopter.png)
+
+- $\textbf C_{\mathcal{IB}}$​ : rotation matrix from navigation to body  frame
+- $\textbf p_i$ : poistion vector for propeller $i$ , $\textbf p_i = [l_{xi},l_{yi},0]^\top$
+- $\textbf g$ : gravity $\textbf g = \textbf C_{\mathcal{IB}}^\top [0,0,g]^\top$
+- $\textbf T$ : thrust $\textbf T = \sum_{i=1}^6[0,0,b\omega_{p,i}^2]$
+- $\textbf M_Q$ : drag moment $\textbf M_Q = \sum_{i=1}^6 [0,0,d\omega_{p,i}^2](-1)^{i+1}$
+- $\textbf M_T$ : thrust induced moment $\textbf M_T = \sum_{i=1}^6[0,0,b\omega_{p,i}^2]\times\textbf p_i$
+
 
 $$
 \textbf A = \begin{pmatrix}b&b&b&b&b&b\\ bls_{30} & bl & bls_{30}& -bls_{30} & -bl & -bl s_{30}\\ -bl c_{30} & 0 & blc_{30} & blc_{30} & 0 & -blc_{30} \\ d& -d & d & -d & d & -d\end{pmatrix}
 $$
 
-
 **MAV Control** 
+
+![image-20240123125940855](quadrotor_body_frame_PID_control.png)
 
 1. $_{\mathcal B}\boldsymbol \omega_{ref} = \text{PID}(_{\mathcal B}\boldsymbol \nu_{ref},_{\mathcal B}\boldsymbol \nu)$
 2. $U_1 = mg\\ \begin{bmatrix}U_2,U_3,U_4\end{bmatrix}^\top=\text{PID}(_{\mathcal B}\boldsymbol \omega_{ref},~_{\mathcal B}\boldsymbol \omega,~_{\mathcal B}\dot{\boldsymbol \omega})$
